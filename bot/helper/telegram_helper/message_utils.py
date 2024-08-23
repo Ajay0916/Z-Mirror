@@ -2,14 +2,14 @@ from asyncio import (
     sleep,
     create_task,
 )
-from pyrogram.errors import (
+from nekozee.errors import (
     FloodWait,
     PeerIdInvalid,
     RPCError,
     UserNotParticipant,
 )
-from pyrogram.types import ChatPermissions
-from pyrogram.enums import ChatAction
+from nekozee.types import ChatPermissions
+from nekozee.enums import ChatAction
 from re import match as re_match
 from time import time
 from datetime import (
@@ -516,8 +516,8 @@ async def forcesub(message, ids, button=None):
             continue
         try:
             chat = await message._client.get_chat(channel_id)
-        except PeerIdInvalid as e:
-            LOGGER.error(f"{e.NAME}: {e.MESSAGE} for {channel_id}")
+        except (PeerIdInvalid, RPCError) as e:
+            LOGGER.error(f"{e.NAME}: {e.MESSAGE} for {channel_id}. Mostly I'm not added in the channel as admin.")
             continue
         try:
             await chat.get_member(message.from_user.id)

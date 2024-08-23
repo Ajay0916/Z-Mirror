@@ -7,15 +7,19 @@ from aiofiles.os import (
 from html import escape
 from io import BytesIO
 from math import ceil
-from os import getcwd, path as os_path
-from pyrogram import filters
-from pyrogram.handlers import (
+from os import (
+    getcwd,
+    path as os_path
+)
+
+from nekozee import filters
+from nekozee.handlers import (
     MessageHandler,
     CallbackQueryHandler
 )
-from pyrogram.types import InputMediaPhoto
+from nekozee.types import InputMediaPhoto
 from re import search as re_search
-from pyrogram.errors import (
+from nekozee.errors import (
     ListenerTimeout,
     ListenerStopped
 )

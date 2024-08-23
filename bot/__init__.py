@@ -31,7 +31,7 @@ from os import (
 )
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-from pyrogram import (
+from nekozee import (
     Client as tgClient
 )
 from qbittorrentapi import Client as qbClient
@@ -58,7 +58,7 @@ getLogger("urllib3").setLevel(INFO)
 getLogger("apscheduler").setLevel(ERROR)
 getLogger("httpx").setLevel(ERROR)
 getLogger("pymongo").setLevel(ERROR)
-getLogger("pyrogram").setLevel(ERROR)
+getLogger("nekozee").setLevel(ERROR)
 
 botStartTime = time()
 bot_loop = get_event_loop()
@@ -1275,7 +1275,6 @@ bot = tgClient(
     app_version="@Z_Mirror Session",
     device_model="@Z_Mirror Bot",
     system_version="@Z_Mirror Server",
-    workers=99999,
 ).start()
 
 BASE += ("oAtiUyppVYRQkuWg8DG2p")

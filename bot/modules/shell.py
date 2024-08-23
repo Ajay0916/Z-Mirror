@@ -1,15 +1,12 @@
 from io import BytesIO
-from pyrogram.filters import command
-from pyrogram.handlers import (
+from nekozee.filters import command
+from nekozee.handlers import (
     MessageHandler,
     EditedMessageHandler
 )
 
 from bot import LOGGER, bot
-from bot.helper.ext_utils.bot_utils import (
-    cmd_exec,
-    new_task
-)
+from bot.helper.ext_utils.bot_utils import cmd_exec
 from bot.helper.telegram_helper.bot_commands import BotCommands
 from bot.helper.telegram_helper.filters import CustomFilters
 from bot.helper.telegram_helper.message_utils import (
@@ -18,7 +15,6 @@ from bot.helper.telegram_helper.message_utils import (
 )
 
 
-@new_task
 async def shell(_, message):
     cmd = message.text.split(maxsplit=1)
     if len(cmd) == 1:

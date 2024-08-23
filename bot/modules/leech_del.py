@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 from asyncio import sleep
 
-from pyrogram.filters import command
-from pyrogram.handlers import MessageHandler
+from nekozee.filters import command
+from nekozee.handlers import MessageHandler
 
 from bot import bot
 from bot.helper.ext_utils.bot_utils import new_task
@@ -15,7 +15,7 @@ from bot.helper.telegram_helper.message_utils import (
 
 delete = set()
 
-@new_task
+
 async def delete_leech(client, message):
     args = message.text.split()
     if len(args) > 1:
@@ -53,8 +53,7 @@ async def delete_leech(client, message):
         message_id,
         reply_message
     )
-    
-@new_task
+
 async def deleting(client, chat_id, message_id, message):
     delete.add(message_id)
     try:

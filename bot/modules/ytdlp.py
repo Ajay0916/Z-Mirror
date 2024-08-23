@@ -2,10 +2,10 @@ from bot import (
     DOWNLOAD_DIR,
     bot,
     config_dict,
-    LOGGER
+    LOGGER,
+    bot_loop
 )
 from bot.helper.ext_utils.bot_utils import (
-    new_task,
     sync_to_async,
     arg_parser,
     COMMAND_USAGE,
@@ -26,8 +26,8 @@ from bot.helper.telegram_helper.message_utils import (
     sendMessage,
 )
 
-from pyrogram.filters import command
-from pyrogram.handlers import MessageHandler
+from nekozee.filters import command
+from nekozee.handlers import MessageHandler
 
 
 class YtDlp(TaskListener):
@@ -58,7 +58,6 @@ class YtDlp(TaskListener):
         self.isYtDlp = True
         self.isLeech = isLeech
 
-    @new_task
     async def newEvent(self):
         self.pmsg = await sendMessage(
             self.message,
@@ -306,11 +305,11 @@ class YtDlp(TaskListener):
             )
             return
         finally:
-            await self.run_multi(
+            self.run_multi(
                 input_list,
                 folder_name,
                 YtDlp
-            )
+            ) # type: ignore
 
         if not qual:
             qual = await YtSelection(self).get_quality(result)
@@ -332,18 +331,18 @@ class YtDlp(TaskListener):
 
 
 async def ytdl(client, message):
-    YtDlp(
+    bot_loop.create_task(YtDlp(
         client,
         message
-    ).newEvent() # type: ignore
+    ).newEvent()) # type: ignore
 
 
 async def ytdlleech(client, message):
-    YtDlp(
+    bot_loop.create_task(YtDlp(
         client,
         message,
         isLeech=True
-    ).newEvent() # type: ignore
+    ).newEvent()) # type: ignore
 
 
 bot.add_handler( # type: ignore

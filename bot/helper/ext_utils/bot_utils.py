@@ -7,7 +7,7 @@ from asyncio import (
 from asyncio.subprocess import PIPE
 from functools import partial, wraps
 
-from pyrogram.types import BotCommand
+from nekozee.types import BotCommand
 from httpx import AsyncClient
 
 from bot import (
@@ -411,12 +411,17 @@ def new_task(func):
         *args,
         **kwargs
     ):
-        return bot_loop.create_task(
+        bot_loop.create_task(
             func(
                 *args,
                 **kwargs
             )
         )
+
+        async def dummy():
+            pass
+
+        return dummy
 
     return wrapper
 
