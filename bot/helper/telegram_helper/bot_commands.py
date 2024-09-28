@@ -18,7 +18,7 @@ class _BotCommands:
         ]
         self.NzbMirrorCommand = [
             f"nzbmirror{CMD_SUFFIX}",
-            f"nzbm{CMD_SUFFIX}",
+            f"sm{CMD_SUFFIX}",
         ]
         self.YtdlCommand = [
             f"ytdlm{CMD_SUFFIX}",
@@ -38,7 +38,7 @@ class _BotCommands:
         ]
         self.NzbLeechCommand = [
             f"nzbleech{CMD_SUFFIX}",
-            f"nzbl{CMD_SUFFIX}",
+            f"sl{CMD_SUFFIX}",
         ]
         self.YtdlLeechCommand = [
             f"ytdlleech{CMD_SUFFIX}",
